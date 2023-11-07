@@ -1,5 +1,16 @@
-#container{
-    align-items: center;
-    justify-content: center;
-    display: flex;
+#left {
+  position: fixed; /* Fixed position keeps it in place */
+  left: 0; /* Position it at the left side of the screen */
+  top: 0; /* Position it at the top of the screen */
+  width: 40vw; /* Set the width as needed */
+  height: 100%; /* Make it cover the full height of the screen */
+  background-color: #f0f0f0; /* Set a background color */
 }
+#right {
+    position: fixed; /* Fixed position keeps it in place */
+    right: 0; /* Position it at the left side of the screen */
+    top: 0; /* Position it at the top of the screen */
+    width: 60vw; /* Set the width as needed */
+    height: 100%; /* Make it cover the full height of the screen */
+    background-color: #407c9e; /* Set a background color */
+  }
