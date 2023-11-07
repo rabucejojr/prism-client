@@ -12,7 +12,7 @@ function Home() {
           minHeight: "75vh",
         }}
       >
-        <Container maxWidth="sm">
+        <Container maxWidth="xs">
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField variant="outlined" label="Complete Name" fullWidth />
