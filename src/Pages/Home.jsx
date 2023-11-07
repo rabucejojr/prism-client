@@ -1,15 +1,15 @@
-import { Calendar } from "../Components";
+import { Calendar, Gender } from "../Components";
 import { Grid, TextField, Button, Container, Box } from "@mui/material";
 import "../assets/styles.css";
 function Home() {
   return (
-    <>
+    <div>
       <Box
         sx={{
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          minHeight: "75vh",
+          minHeight: "65vh",
         }}
       >
         <Container maxWidth="xs">
@@ -21,7 +21,7 @@ function Home() {
               <TextField variant="outlined" label="Age" fullWidth />
             </Grid>
             <Grid item xs={6}>
-              <TextField variant="outlined" label="Gender" fullWidth />
+              <Gender />
             </Grid>
             <Grid item xs={12}>
               <TextField variant="outlined" label="Classification" fullWidth />
@@ -33,7 +33,7 @@ function Home() {
               <TextField variant="outlined" label="Contact Number" fullWidth />
             </Grid>
             <Grid item xs={6}>
-              <Grid container justifyContent="center" fullWidth>
+              <Grid container>
                 <Calendar />
               </Grid>
             </Grid>
@@ -45,7 +45,7 @@ function Home() {
           </Grid>
         </Container>
       </Box>
-    </>
+    </div>
   );
 }
 
