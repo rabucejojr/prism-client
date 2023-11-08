@@ -1,4 +1,4 @@
-import { Calendar, Table } from "../Components";
+import { Table } from "../Components";
 import {
   Grid,
   TextField,
@@ -10,6 +10,9 @@ import {
   MenuItem,
 } from "@mui/material";
 import "../assets/styles.css";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import { useState } from "react";
 
 function Home() {
@@ -23,34 +26,15 @@ function Home() {
     number: "",
   });
 
-  // SAVE DATA
-  const saveData = async () => {
-    try {
-      const response = await fetch("http://localhost/api/save", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(values), // Convert data to JSON before sending
-      });
-
-      if (response.ok) {
-        const responseData = await response.json();
-        console.log("Data saved:", responseData);
-      } else {
-        throw new Error("Error saving data");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
-
   function handleChange(e) {
     setValues({
       ...values,
       [e.target.name]: e.target.value,
     });
   }
+  const list = () => {
+    console.log(values);
+  };
 
   return (
     <>
@@ -96,8 +80,8 @@ function Home() {
                   <Select
                     style={{ width: 190 }}
                     id="gender"
+                    name="gender"
                     value={values.gender}
-                    label="Gender"
                     onChange={handleChange}
                   >
                     <MenuItem value={"Male"}>Male</MenuItem>
@@ -143,12 +127,14 @@ function Home() {
                 {/* Date Picker / Calendar */}
                 <Grid item xs={6}>
                   <Grid container>
-                    <Calendar />
+                    <LocalizationProvider dateAdapter={AdapterDayjs}>
+                      <DatePicker />
+                    </LocalizationProvider>
                   </Grid>
                 </Grid>
                 {/* Save Button */}
                 <Grid item xs={12}>
-                  <Button variant="contained" onClick={saveData} fullWidth>
+                  <Button variant="contained" onClick={list} fullWidth>
                     Save
                   </Button>
                 </Grid>
