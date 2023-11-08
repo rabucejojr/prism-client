@@ -1,4 +1,4 @@
-import { Calendar, Gender, Table } from "../Components";
+import { Calendar, Table } from "../Components";
 import {
   Grid,
   TextField,
