@@ -11,21 +11,46 @@ import {
 } from "@mui/material";
 import "../assets/styles.css";
 import { useState } from "react";
+
 function Home() {
-  const [values,setValues] =useState({
-  name:"",
-  age:"",
-  gender:"Male",
-  classification:"",
-  address:"",
-  number:"",
+  // State Handlers
+  const [values, setValues] = useState({
+    name: "",
+    age: "",
+    gender: "Male",
+    classification: "",
+    address: "",
+    number: "",
   });
+
+  // SAVE DATA
+  const saveData = async () => {
+    try {
+      const response = await fetch("http://localhost/api/save", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values), // Convert data to JSON before sending
+      });
+
+      if (response.ok) {
+        const responseData = await response.json();
+        console.log("Data saved:", responseData);
+      } else {
+        throw new Error("Error saving data");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
   function handleChange(e) {
     setValues({
-        ...values,
-        [e.target.name]: e.target.value,
+      ...values,
+      [e.target.name]: e.target.value,
     });
-}
+  }
 
   return (
     <>
@@ -55,12 +80,15 @@ function Home() {
                 </Grid>
                 {/* Age */}
                 <Grid item xs={6}>
-                  <TextField variant="outlined" label="Age" 
-                  id="age"
-                  name="age"
-                  value={values.age}
-                  onChange={handleChange}
-                  fullWidth />
+                  <TextField
+                    variant="outlined"
+                    label="Age"
+                    id="age"
+                    name="age"
+                    value={values.age}
+                    onChange={handleChange}
+                    fullWidth
+                  />
                 </Grid>
                 {/* Gender */}
                 <Grid item xs={6}>
@@ -90,12 +118,15 @@ function Home() {
                 </Grid>
                 {/* Address */}
                 <Grid item xs={12}>
-                  <TextField variant="outlined" label="Address" 
-                  id="address"
-                  name="address"
-                  value={values.address}
-                  onChange={handleChange}
-                  fullWidth />
+                  <TextField
+                    variant="outlined"
+                    label="Address"
+                    id="address"
+                    name="address"
+                    value={values.address}
+                    onChange={handleChange}
+                    fullWidth
+                  />
                 </Grid>
                 {/* Contact Number */}
                 <Grid item xs={6}>
@@ -117,7 +148,7 @@ function Home() {
                 </Grid>
                 {/* Save Button */}
                 <Grid item xs={12}>
-                  <Button variant="contained" fullWidth>
+                  <Button variant="contained" onClick={saveData} fullWidth>
                     Save
                   </Button>
                 </Grid>
