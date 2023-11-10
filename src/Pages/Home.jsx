@@ -1,4 +1,4 @@
-import { Table } from "../Components";
+import { Table,Calendar } from "../Components";
 import {
   Grid,
   TextField,
@@ -24,6 +24,7 @@ function Home() {
     classification: "",
     address: "",
     number: "",
+    date:''
   });
 
   function handleChange(e) {
@@ -35,6 +36,10 @@ function Home() {
   const list = () => {
     console.log(values);
   };
+  const handleDateSelect=(selectedDate)=>{
+    console.log(selectedDate);
+    
+  }
 
   return (
     <>
@@ -127,9 +132,7 @@ function Home() {
                 {/* Date Picker / Calendar */}
                 <Grid item xs={6}>
                   <Grid container>
-                    <LocalizationProvider dateAdapter={AdapterDayjs}>
-                      <DatePicker />
-                    </LocalizationProvider>
+                    <Calendar onDateSelect={handleDateSelect}/>
                   </Grid>
                 </Grid>
                 {/* Save Button */}
