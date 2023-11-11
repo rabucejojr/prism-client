@@ -1,21 +1,25 @@
 import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
-import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import { DateField } from "@mui/x-date-pickers";
 import { useState } from "react";
+import dayjs from "dayjs";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
 
-export default function FirstComponent({ onDateSelect }) {
-  
-  const [date, setDate] = useState("");
+export default function FirstComponent() {
+  const date = dayjs().format("MM/DD/YYYY");
+  const [value, setValue] = useState(date);
 
-  const handleDate = (selectedDate) => {
-    setDate(selectedDate);
-    if (onDateSelect) {
-      onDateSelect(selectedDate);
-    }
+  const handleValue = () => {
+    setValue(date);
+    console.log(value)
   };
+
   return (
     <LocalizationProvider dateAdapter={AdapterDayjs}>
-      <DatePicker value={date} onChange={handleDate} />
+      <DateField
+        label="Date"
+        value={handleValue}
+      />
     </LocalizationProvider>
   );
 }
